@@ -3,6 +3,8 @@ import discord
 import os
 import webserver
 
+Discord_token = os.environ['discordkey']
+
 def translate_text(input_text, target_language='en'):
     translator = googletrans.Translator()
     translated = translator.translate(input_text, dest=target_language)
@@ -26,6 +28,7 @@ class Client(discord.Client):
 intents = discord.Intents.default()
 intents.message_content = True
 
-client = Client(intents=intents)
-client.run(os.environ['discordkey'])
 webserver.keep_alive()
+
+client = Client(intents=intents)
+client.run(Discord_token)
